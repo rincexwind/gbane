@@ -11,6 +11,6 @@ class UrlMappings {
 		"/"(controller:"admin", action:"home")
         "500"(view:'/error')
 		
-		"/**"(controller:"admin", action:"home")
+		"/**"(controller:"admin", action:"home") 
 	}
 }

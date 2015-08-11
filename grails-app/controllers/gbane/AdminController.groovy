@@ -1,5 +1,7 @@
 package gbane
 
+import grails.converters.JSON
+
 class AdminController {
 	
 	static defaultAction = "dashboard"
@@ -7,7 +9,9 @@ class AdminController {
 	def adminService
 	
 	def home() {
-		render "<h1>This will be the admin page</h1>"
+		response.status = 500
+		def errorMsg = [error: 'an error occurred']
+		render errorMsg as JSON
 	}
 	
 	def dashboard() {
@@ -15,6 +19,14 @@ class AdminController {
 		def randomQuote = adminService.getRandomQuote()
 		
 		[quote : randomQuote]
+	}
+	
+	def ajaxRandom() {
+		def randomQuote = adminService.getRandomQuote()
+		render {
+			q(randomQuote.content)
+			p(randomQuote.author)
+		}
 	}
 	
 
